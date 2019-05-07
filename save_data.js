@@ -22,6 +22,9 @@ client.on('connect', function () {
 });
 
 client.on('message', function(topic, data) {
-    const message = JSON.parse(data);
+    const message = {
+        ...JSON.parse(data),
+        timestamp: new Date(),
+    };
     db.insert(message);
 });
